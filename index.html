@@ -1,0 +1,59 @@
+<style>
+    input{width:60px;},
+    a{cursor: pointer;}
+  </style>
+  <h3>Atlas Mongodb Connect</h3>
+  <h5>DB정보</h5>
+  1. database name: myFirstDatabase</br>
+  2. table name: shindalsoo</br>
+  
+  <h5>CRUD</h5>
+  1. <a onclick="javascript:getAll('/api/getAll')">전체데이타 조회</a><br>
+  2. 이름:<input type="text" id="name" name="name">, 나이:<input type="text" id="age" name="age">
+  <button onclick="javascript:post()">  등록</button><br />
+  3. 이름검색:<input type="text" id="searchname" name="name"><button onclick="javascript:getOne()">검색</button>
+  <br>
+  
+  <h5>실행결과</h5>
+  <textarea style="width: 100%; height: 400px" id="msg"></textarea>
+  
+  <script>
+  const $ = document.querySelector.bind(document);
+  async function post(
+    url='/api/post', 
+    data = {
+      name: '', age: 0, phone: '343434',
+    }) {
+    data.name = $('#name').value;
+    data.age = $('#age').value;
+    alert(data);
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    $('#msg').value =
+      `fetch POST ${url} \n` + `${JSON.stringify(json, null, ' ')}`;
+  }
+  
+  async function getOne(url = '/api/getOne/1000') {
+    url = '/api/getOne/'+$('#searchname').value;
+    alert(url);
+    const response = await fetch(url);
+    const json = await response.json();
+    $('#msg').value =
+      `fetch GET ${url} \n` + `${JSON.stringify(json, null, ' ')}`;
+  }
+  
+  async function getAll(url = '/getAll') {
+    console.log(111);
+    const response = await fetch(url);
+    const json = await response.json();
+    $('#msg').value =
+      `fetch GET ${url} \n` + `${JSON.stringify(json, null, ' ')}`;
+  }
+  </script>
+  
