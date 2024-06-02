@@ -22,5 +22,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(8088, () => {
-  console.log(`Server Started at ${8088}`);
+  console.log(`Server Started at http://localhost:${8088}`);
 });
