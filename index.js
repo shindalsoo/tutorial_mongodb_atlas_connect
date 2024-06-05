@@ -4,6 +4,7 @@ import path from "path";
 import config from "./config.js";
 import routes from "./routes/routes.js";
 
+console.log(`ecode password:${encodeURIComponent("sds9050@#!")}`);
 mongoose.set("strictQuery", true); // 스키마에서 정의한 필드만 받는다.
 mongoose
   .connect(
