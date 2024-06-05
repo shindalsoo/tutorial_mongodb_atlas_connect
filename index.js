@@ -1,18 +1,19 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const path = require("path");
+import express from "express";
+import mongoose from "mongoose";
+import path from "path";
+import config from "./config.js";
+import routes from "./routes/routes.js";
 
 mongoose.set("strictQuery", true); // 스키마에서 정의한 필드만 받는다.
 mongoose
   .connect(
-    `mongodb+srv://shindalsoo:9Iv2bB1hVRAQU8xl@zioyou.zkjwmfy.mongodb.net/myFirstDatabase?authSource=admin`,
+    config.mongodbUri,
     {},
   )
   .then(() => console.log("mongodb atlas connected"))
   .catch((e) => console.log(e));
 
 const app = express();
-const routes = require("./routes/routes");
 
 app.use(express.json());
 app.use("/api", routes);

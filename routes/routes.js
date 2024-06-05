@@ -1,5 +1,6 @@
-const express = require("express");
-const Model = require("../models/model");
+import express from "express";
+import Model from "../models/model.js";
+
 const router = express.Router();
 
 //Post Method
@@ -66,4 +67,4 @@ router.delete("/delete/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
