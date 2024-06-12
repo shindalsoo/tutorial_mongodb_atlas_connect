@@ -8,7 +8,7 @@ console.log(`ecode password:${encodeURIComponent("sds9050@#!")}`);
 mongoose.set("strictQuery", true); // 스키마에서 정의한 필드만 받는다.
 mongoose
   .connect(
-    config.mongodbUri,
+    process.env.MONGODB_ATLAS_CONNECTION_STRING,
     {},
   )
   .then(() => console.log("mongodb atlas connected"))
